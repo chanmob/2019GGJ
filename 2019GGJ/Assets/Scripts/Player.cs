@@ -10,18 +10,19 @@ public class Player : MonoBehaviour
     private Vector3 mousePos;
     private Vector3 diff;
 
-    public Sprite[] stepSprites = new Sprite[3];
-
-    private SpriteRenderer spriteRenderer;
-
     public float speed;
     private float rot_z;
 
-    private bool leftStep = false;
+    private bool torchlightOn = false;
+    private bool leftstep = false;
 
     public int hp;
 
     public GameObject stone;
+    public GameObject[] step = new GameObject[2];
+    private List<GameObject> leftSteps = new List<GameObject>();
+    private List<GameObject> rightSteps = new List<GameObject>();
+    private GameObject torch;
 
     private IEnumerator stepCoroutine;
 
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
 	void Start ()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        torch = transform.Find("Torch").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
             LookAt();
             if(stepCoroutine == null)
             {
-                stepCoroutine = ChangeFootStep();
+                stepCoroutine = FootStep();
                 StartCoroutine(stepCoroutine);
             }
             pos = mousePos;
@@ -52,18 +53,62 @@ public class Player : MonoBehaviour
         if(pos != null)
         {
             Vector2 direction = (mousePos - this.transform.position).normalized;
-            rb2d.AddForce(direction * speed * Time.deltaTime);
-        }
+            transform.Translate(Vector2.up * -speed * Time.deltaTime);
+            //rb2d.AddForce(direction * speed * Time.deltaTime);
 
-        if (Vector2.Distance(this.transform.position, mousePos) < 0.1f)
-        {
-            StepStop();
+            if (Vector2.Distance(this.transform.position, mousePos) < 0.1f)
+            {
+                StepStop();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
             ThrowStone();
         }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            torchlightOn = !torchlightOn;
+            torch.SetActive(torchlightOn);
+        }
+    }
+
+    private IEnumerator FootStep()
+    {
+        while (true)
+        {
+            leftstep = !leftstep;
+
+            if (leftstep)
+            {
+                StepPooling(step[0], leftSteps);
+            }
+            else
+            {
+                StepPooling(step[1], rightSteps);
+            }
+
+            yield return new WaitForSeconds(0.7f);
+        }
+    }
+
+    private void StepPooling(GameObject _go, List<GameObject> _goList)
+    {
+        for (int i = 0; i < rightSteps.Count; i++)
+        {
+            if (!_goList[i].activeInHierarchy)
+            {
+                _goList[i].transform.position = this.transform.position;
+                _goList[i].transform.rotation = this.transform.rotation;
+                _goList[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                _goList[i].SetActive(true);
+                return;
+            }
+        }
+
+        var go = Instantiate(_go, this.transform.position, this.transform.rotation);
+        _goList.Add(go);
     }
 
     public void StepStop()
@@ -71,31 +116,11 @@ public class Player : MonoBehaviour
         Debug.Log("정지");
         pos = null;
         rb2d.velocity = new Vector2(0, 0);
-        if (stepCoroutine != null)
+        if(stepCoroutine != null)
         {
             StopCoroutine(stepCoroutine);
             stepCoroutine = null;
-        }
-
-        spriteRenderer.sprite = stepSprites[0];
-    }
-
-    private IEnumerator ChangeFootStep()
-    {
-        while (true)
-        {
-            leftStep = !leftStep;
-
-            if (leftStep)
-            {
-                spriteRenderer.sprite = stepSprites[1];
-            }
-            else
-            {
-                spriteRenderer.sprite = stepSprites[2];
-            }
-
-            yield return new WaitForSeconds(1f);
+            leftstep = false;
         }
     }
 
