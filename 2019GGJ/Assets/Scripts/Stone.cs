@@ -6,6 +6,8 @@ public class Stone : MonoBehaviour
 {
     public Rigidbody2D rb2d;
 
+    private AudioSource audioSource;
+
     private CircleCollider2D circle2d;
 
     public GameObject waveParticle;
@@ -21,6 +23,8 @@ public class Stone : MonoBehaviour
 	void Start ()
     {
         circle2d = GetComponent<CircleCollider2D>();
+        audioSource = GetComponent<AudioSource>();
+
         rb2d.AddForce(transform.up * -speed);
 
         waveParticle = transform.Find("Wave").gameObject;
@@ -66,6 +70,13 @@ public class Stone : MonoBehaviour
         else if (collision.CompareTag("Monster"))
         {
             collision.GetComponent<Monster>().Attack(this.gameObject, true);
+        }
+        else if (collision.CompareTag("Firewood"))
+        {
+            audioSource.Play();
+            StopCoroutine(WaveCoroutine);
+            WaveCoroutine = CreateWave(0f);
+            StartCoroutine(WaveCoroutine);
         }
     }
 }

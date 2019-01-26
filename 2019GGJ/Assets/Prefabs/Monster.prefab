@@ -84,8 +84,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1878458322284394}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.84, y: 0.56, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.72, y: 5.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4854037772266940}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3423a2a40f57e946a30115dc595719a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  state: 0
   chase: 0
   chaseSpeed: 1
   rushSpeed: 300
@@ -278,10 +278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84133f94f5a1d594f8504782aeff07c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 8300000, guid: e1de0c12bd4c8b24eb31b82b1b02c329, type: 3}
-  boundarySound: {fileID: 8300000, guid: 1b2d907bb111eb745a99e650a38e9a7d, type: 3}
+  attackSound: {fileID: 8300000, guid: 5eca003522b3d67459ba449521c6f20a, type: 3}
+  boundarySound: {fileID: 8300000, guid: a1c8e37bb8e565e4c83cc3da7195f621, type: 3}
   player: {fileID: 0}
-  colliderRadius: 2.5
+  colliderRadius: 4
   soundDelay: 2
   divisionValue: 3
   boundaryRange: 1.5
