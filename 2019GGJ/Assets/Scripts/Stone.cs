@@ -27,6 +27,8 @@ public class Stone : MonoBehaviour
 
         WaveCoroutine = CreateWave(1f);
         StartCoroutine(WaveCoroutine);
+
+        Destroy(this.gameObject, 5f);
     }
 
     private IEnumerator CreateWave(float _delay)
@@ -49,7 +51,7 @@ public class Stone : MonoBehaviour
             yield return null;
         }
 
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
