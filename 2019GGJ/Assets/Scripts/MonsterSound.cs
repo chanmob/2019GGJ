@@ -20,7 +20,7 @@ public class MonsterSound : MonoBehaviour
     private bool soundOn = false;
     private bool inBoundary = false;
 
-    public float distance;
+    private float distance;
     public float colliderRadius;
     private float time;
     public float soundDelay;
@@ -53,7 +53,7 @@ public class MonsterSound : MonoBehaviour
                 if (!inBoundary)
                 {
                     inBoundary = true;
-                    monster.Attack(player);
+                    monster.Attack(player, false);
                     time = soundDelay;
                 }
 

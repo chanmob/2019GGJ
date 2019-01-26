@@ -8,6 +8,7 @@ public class Stone : MonoBehaviour
     private CircleCollider2D circle2d;
 
     public float speed;
+    public float maxradius;
 
 	// Use this for initialization
 	void Start ()
@@ -28,7 +29,7 @@ public class Stone : MonoBehaviour
 
         float t = 0.5f;
 
-        while (t < 2)
+        while (t < maxradius)
         {
             t += (Time.deltaTime / 1);
 
@@ -43,5 +44,9 @@ public class Stone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.name);
+        if (collision.CompareTag("Monster"))
+        {
+            collision.GetComponent<Monster>().Attack(this.gameObject, true);
+        }
     }
 }
