@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
+    private AudioSource audiosource;
+
     private Vector3? pos;
     private Vector3 downMousePos;
     private Vector3 upMousePos;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
 	void Start ()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        audiosource = GetComponent<AudioSource>();
         torch = transform.Find("Torch").gameObject;
 	}
 	
@@ -41,7 +44,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("첫번째 터치");
             clickTime = 0f;
             downMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             interactTorch = false;
@@ -67,6 +69,10 @@ public class Player : MonoBehaviour
 
             if (Mathf.Abs(Vector2.Distance(downMousePos, upMousePos)) >= 2f)
             {
+                if(stone == null)
+                {
+                    return;
+                }
                 Debug.Log("Swipe : Throw Stone");
                 StepStop();
                 LookAt(upMousePos);
@@ -76,6 +82,10 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("Short Click : Move");
                 rb2d.velocity = new Vector2(0, 0);
+                if (!audiosource.isPlaying)
+                {
+                    audiosource.Play();
+                }
                 LookAt(downMousePos);
                 if (stepCoroutine == null)
                 {
@@ -125,7 +135,7 @@ public class Player : MonoBehaviour
                 StepPooling(step[1], rightSteps);
             }
 
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.6f);
         }
     }
 
@@ -151,6 +161,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("정지");
         pos = null;
+        audiosource.Stop();
         rb2d.velocity = new Vector2(0, 0);
         if(stepCoroutine != null)
         {
