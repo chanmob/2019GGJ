@@ -1,35 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb2d;
+	private Rigidbody2D rb2d;
 
-    private AudioSource audiosource;
+	private AudioSource audiosource;
 
-    private Vector3? pos;
-    private Vector3 startPos;
-    private Vector3 downMousePos;
-    private Vector3 upMousePos;
-    private Vector3 diff;
+	private Vector3? pos;
+	private Vector3 startPos;
+	private Vector3 downMousePos;
+	private Vector3 upMousePos;
+	private Vector3 diff;
 
-    public float speed;
-    private float rot_z;
-    private float clickTime;
+	public float speed;
+	private float rot_z;
+	private float clickTime;
 
-    private bool torchlightOn = false;
-    private bool interactTorch;
-    private bool leftstep = false;
-    private bool death = false;
+	private bool torchlightOn = false;
+	private bool interactTorch;
+	private bool leftstep = false;
+	private bool death = false;
 
-    public int hp;
+	public int hp;
 
-    public GameObject stone;
-    public GameObject[] step = new GameObject[2];
-    private List<GameObject> leftSteps = new List<GameObject>();
-    private List<GameObject> rightSteps = new List<GameObject>();
-    private GameObject torch;
+	public GameObject stone;
+	public GameObject[] step = new GameObject[2];
+	private List<GameObject> leftSteps = new List<GameObject>();
+	private List<GameObject> rightSteps = new List<GameObject>();
+	private GameObject torch;
+
+	public Text childDialogue;
+	public string[] dialogueContents = new string[3];
 
     private IEnumerator stepCoroutine;
 
@@ -212,4 +216,29 @@ public class Player : MonoBehaviour
         this.transform.position = startPos;
         death = false;
     }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(collision.CompareTag("Cold&Juicy"))
+		{
+			childDialogue.text = dialogueContents[0];
+			StartCoroutine(ContentsClear());
+		}
+		else if (collision.CompareTag("MarryMe"))
+		{
+			childDialogue.text = dialogueContents[1];
+			StartCoroutine(ContentsClear());
+		}
+		if (collision.CompareTag("BumpyStick"))
+		{
+			childDialogue.text = dialogueContents[2];
+			StartCoroutine(ContentsClear());
+		}
+	}
+
+	private IEnumerator ContentsClear()
+	{
+		yield return new WaitForSeconds(2);
+		childDialogue.text = "";
+	}
 }

@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eec57ba07137174092e183c1c06c922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDelay: 0.2
+  typeDelay: 0.1
   dialogueText: {fileID: 1884598978}
   guideText: {fileID: 920117521}
   dialogueTrigger: {fileID: 1908523955}
@@ -10089,14 +10089,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Yam
     sentences:
     - Child in the Dark
-    - Design Lee Seong Chan
-    - Programming Kim Chan Young
-    - Programming Song Hyun Ji
-    - Sound Lee Yong Seok
-    - 2019 Global Game Jam, Bridge
+    - First Tutorial
 --- !u!1 &1929047084
 GameObject:
   m_ObjectHideFlags: 0

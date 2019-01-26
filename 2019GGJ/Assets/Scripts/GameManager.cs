@@ -9,11 +9,17 @@ public class GameManager : MonoBehaviour
     public int deathCount;
     public int fireflyCount;
 
+	private void Start()
+	{
+		
+	}
+
 	void Awake ()
     {
         instance = this;
+		PlayerPrefs.DeleteAll();
 
-        if (PlayerPrefs.HasKey("DEATH"))
+		if (PlayerPrefs.HasKey("DEATH"))
         {
             deathCount = PlayerPrefs.GetInt("DEATH");
         }

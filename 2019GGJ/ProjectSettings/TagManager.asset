@@ -8,6 +8,9 @@ TagManager:
   - Monster
   - Firewood
   - Map
+  - Cold&Juicy
+  - MarryMe
+  - BumpyStick
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour {
 	private Queue<string> sentences;
 	private string dialogue;
 	private string beforeSentence;
-	private bool dialogueEnd;
+	public bool dialogueEnd;
 
 	// Use this for initialization
 	void Start () {
