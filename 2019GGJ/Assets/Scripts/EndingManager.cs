@@ -7,13 +7,20 @@ public class EndingManager : MonoBehaviour {
 
 	private int deathCount;
 	private int fireflyCount;
+	private AudioSource audiosource;
 
 	public Text endingName;
 	public Text endingText;
 	public string happyEndingText;
 	public string normalEndingText;
 	public string badEndingText;
+	public AudioClip endingBGM;
+	public AudioClip happyEndingBGM;
 
+	private void Start()
+	{
+		audiosource = GetComponent<AudioSource>();
+	}
 	void Awake()
 	{
 		if (PlayerPrefs.HasKey("DEATH"))
@@ -30,6 +37,7 @@ public class EndingManager : MonoBehaviour {
 		{
 			endingName.text = "Happy Ending";
 			endingText.text = happyEndingText;
+			//audiosource.clip=
 		}
 		else if (deathCount >= 10 || fireflyCount == 0) //Bad Ending
 		{

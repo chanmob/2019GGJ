@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour {
 
 	[Range(0f,1f)]
 	public float typeDelay;
+	public float tutorialEndTime = 5;
 
 	public Text dialogueText;
 	public Text guideText;
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour {
 	private Queue<string> sentences;
 	private string dialogue;
 	private string beforeSentence;
+
 	public bool dialogueEnd;
 
 	// Use this for initialization
@@ -32,7 +34,7 @@ public class DialogueManager : MonoBehaviour {
 		{
 			StartCoroutine(FadeText(dialogueText, true));
 			StartCoroutine(FadeText(guideText, false));
-			StartCoroutine(LoadNextTutorial(10, nextTutorial));
+			StartCoroutine(LoadNextTutorial(tutorialEndTime, nextTutorial));
 			dialogueEnd = false;
 		}
 
@@ -134,10 +136,7 @@ public class DialogueManager : MonoBehaviour {
 
 	IEnumerator LoadNextTutorial(float time, string tutorialNumber)
 	{
-		Debug.Log("Start 10 Seconds");
 		yield return new WaitForSecondsRealtime(time);
-		Debug.Log("End 10 Seconds");
-
 		img.gameObject.SetActive(true);
 		for (float i = 0; i <= 1.1f; i += Time.deltaTime)
 		{

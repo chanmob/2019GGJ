@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
 			childDialogue.text = dialogueContents[0];
 			StartCoroutine(ContentsClear());
 		}
-		else if (collision.CompareTag("MarryMe"))
+		else if (collision.CompareTag("ManyMe"))
 		{
 			childDialogue.text = dialogueContents[1];
 			StartCoroutine(ContentsClear());

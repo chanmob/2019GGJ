@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0e182d9ac0d0f4684850f0d7cd66c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularSpeed: 0
+  angularSpeed: 0.0004
   img: {fileID: 1069167519}
   gameover: {fileID: 1786590758}
   settingBtn: {fileID: 2008878997}
@@ -1112,7 +1112,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.3584906, g: 0.12006053, b: 0.2546431, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -7902,7 +7902,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Child Dialogue
+  m_Text: 
 --- !u!222 &1243461395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8842,8 +8842,8 @@ GameObject:
   - component: {fileID: 1601510669}
   - component: {fileID: 1601510668}
   m_Layer: 0
-  m_Name: MarryMe
-  m_TagString: MarryMe
+  m_Name: ManyMe
+  m_TagString: ManyMe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9286,17 +9286,17 @@ Prefab:
     - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
         type: 2}
       propertyPath: dialogueContents.Array.data[0]
-      value: Cold & Juicy
+      value: A bit eerie, but it feels good.
       objectReference: {fileID: 0}
     - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
         type: 2}
       propertyPath: dialogueContents.Array.data[1]
-      value: Marry Me
+      value: So many me in other clothes!
       objectReference: {fileID: 0}
     - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
         type: 2}
       propertyPath: dialogueContents.Array.data[2]
-      value: Bumpy Stick
+      value: Freedom? What's that? I don't know.
       objectReference: {fileID: 0}
     - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
         type: 2}

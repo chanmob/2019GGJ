@@ -334,13 +334,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eec57ba07137174092e183c1c06c922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDelay: 0.1
+  typeDelay: 0.07
+  tutorialEndTime: 7
   dialogueText: {fileID: 1884598978}
   guideText: {fileID: 920117521}
   dialogueTrigger: {fileID: 1908523955}
   player: {fileID: 1929047084}
   img: {fileID: 463738087}
   nextTutorial: Tutorial 1
+  dialogueEnd: 0
 --- !u!4 &248914038
 Transform:
   m_ObjectHideFlags: 0
@@ -490,7 +492,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\rTouch the screen to move the player."
+  m_Text: Touch to move. Moving makes noise.
 --- !u!222 &920117522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10090,8 +10092,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     sentences:
-    - Child in the Dark
-    - First Tutorial
+    - '............'
+    - Pitiful, pitiful-hark!
+    - Black was the hide of the night that stretched over me
+    - When I wandered in a desolate moor, into an abandoned adobe
+    - And inside, I found a child in the dark.
 --- !u!1 &1929047084
 GameObject:
   m_ObjectHideFlags: 0
@@ -10168,6 +10173,11 @@ MonoBehaviour:
   step:
   - {fileID: 1896403162121124, guid: de4f532dc04309d4a940feb4b554c06e, type: 2}
   - {fileID: 1151351586305598, guid: 733614245ed5e7b4987a23329f167bf7, type: 2}
+  childDialogue: {fileID: 0}
+  dialogueContents:
+  - 
+  - 
+  - 
 --- !u!212 &1929047088
 SpriteRenderer:
   m_ObjectHideFlags: 0
