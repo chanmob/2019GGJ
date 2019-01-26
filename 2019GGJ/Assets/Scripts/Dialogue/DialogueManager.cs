@@ -5,23 +5,36 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
-	public Text nameText;
+	[Range(0f,1f)]
+	public float typeDelay;
+
 	public Text dialogueText;
+	public GameObject dialogueTrigger;
+	public GameObject player;
 
 	private Queue<string> sentences;
-	private bool coroutineEnd = true;
 	private string dialogue;
 	private string beforeSentence;
+	private bool dialogueEnd;
 
 	// Use this for initialization
 	void Start () {
 		sentences = new Queue<string>();
 	}
 
+	void FixedUpdate()
+	{
+		if (Input.GetMouseButtonDown(0)&&dialogueEnd)
+		{
+			StartCoroutine(FadeText(true));
+			dialogueEnd = false;
+		}
+	}
+
 	public void StartDialogue(Dialogue dialogue)
 	{
-		nameText.text = dialogue.name;
-
+		dialogueTrigger.SetActive(false);
+		dialogueText.text = "";
 		sentences.Clear();
 
 		foreach(string sentence in dialogue.sentences)
@@ -32,6 +45,8 @@ public class DialogueManager : MonoBehaviour {
 		DisplayNextSentence();
 	}
 
+
+
 	public void DisplayNextSentence()
 	{
 		if(sentences.Count==0)
@@ -40,37 +55,71 @@ public class DialogueManager : MonoBehaviour {
 			return;
 		}
 
-		if (coroutineEnd)
-		{
-			dialogue = sentences.Dequeue();
-			beforeSentence = dialogue;
-			StopAllCoroutines();
-			StartCoroutine(TypeSentence(dialogue)); //print dialogue typely
-		}
-		else
-		{
-			StopAllCoroutines();
-			dialogueText.text = beforeSentence; //print dialogue directly
-			coroutineEnd = true;
-		}
+		dialogue = sentences.Dequeue();
+		beforeSentence = dialogue;
+		StopAllCoroutines();
+		StartCoroutine(TypeSentence(dialogue)); //print dialogue typely
 
 	}
 
 	IEnumerator TypeSentence (string sentence)
 	{
-		coroutineEnd = false;
-		dialogueText.text = "";
+
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return null;
+			yield return new WaitForSeconds(typeDelay);
 		}
-		coroutineEnd = true;
+		yield return new WaitForSeconds(0.5f);
+		dialogueText.text += "\n\n";
+		DisplayNextSentence();
 
 	}
 
 	void EndDialogue()
 	{
-		Debug.Log("End Dialogue");
+		dialogueEnd = true;
+		player.SetActive(true);
+		StartCoroutine(FadePlayer(false));
+	}
+
+	IEnumerator FadeText(bool fadeAway)
+	{
+		if (fadeAway)
+		{
+			for (float i = 1; i >= 0; i -= Time.deltaTime)
+			{
+				dialogueText.color = new Color(i, i, i, i); //까맣게 투명하게
+				yield return null;
+			}
+		}
+		else
+		{
+			for (float i = 0; i <= 1.1f; i += Time.deltaTime)
+			{
+				dialogueText.color = new Color(i, i, i, i); // 하얗게 not투명하게
+				yield return null;
+			}
+		}
+	}
+
+	IEnumerator FadePlayer(bool fadeAway)
+	{
+		if (fadeAway)
+		{
+			for (float i = 1; i >= 0; i -= Time.deltaTime)
+			{
+				player.GetComponent<SpriteRenderer>().color = new Color(i, i, i, i); //까맣게 투명하게
+				yield return null;
+			}
+		}
+		else
+		{
+			for (float i = 0; i <= 1.1f; i += Time.deltaTime)
+			{
+				player.GetComponent<SpriteRenderer>().color = new Color(i, i, i, i); // 하얗게 not투명하게
+				yield return null;
+			}
+		}
 	}
 }

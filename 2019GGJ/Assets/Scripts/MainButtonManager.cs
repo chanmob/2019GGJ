@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainButtonManager : MonoBehaviour {
 
@@ -8,6 +10,8 @@ public class MainButtonManager : MonoBehaviour {
 	public GameObject settingPanel;
 	public GameObject creditsPanel;
 	public GameObject exitPanel;
+
+	public Image img;
 
 	public void PressGameStartBtn()
 	{
@@ -53,4 +57,32 @@ public class MainButtonManager : MonoBehaviour {
 	{
 		exitPanel.SetActive(false);
 	}
+
+	public void PressNewGameBtn()
+	{
+		img.gameObject.SetActive(true);
+		StartCoroutine(FadeImage(false));
+	}
+
+	IEnumerator FadeImage(bool fadeAway)
+	{
+		if (fadeAway)
+		{
+			for (float i = 1; i >= 0; i -= Time.deltaTime)
+			{
+				img.color = new Color(0, 0, 0, i);
+				yield return null;
+			}
+		}
+		else
+		{
+			for (float i = 0; i <= 1.1f; i += Time.deltaTime)
+			{
+				img.color = new Color(0, 0, 0, i);
+				yield return null;
+			}
+			SceneManager.LoadScene("Tutorial");
+		}
+	}
+
 }

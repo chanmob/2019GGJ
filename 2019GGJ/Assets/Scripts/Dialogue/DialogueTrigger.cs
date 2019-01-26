@@ -11,7 +11,6 @@ public class DialogueTrigger : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
-			Debug.Log("첫번째 터치");
 			TriggerDialogue();
 		}
 	}
