@@ -7,6 +7,7 @@ TagManager:
   - Shootable
   - Monster
   - Firewood
+  - Map
   layers:
   - Default
   - TransparentFX

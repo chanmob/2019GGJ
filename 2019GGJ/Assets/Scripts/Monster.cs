@@ -23,6 +23,7 @@ public class Monster : MonoBehaviour
     public float chaseSpeed;
     public float rushSpeed;
     public float maxChaseDistance;
+    private float distance;
     private float rot_z;
 
     private Vector3 diff;
@@ -43,9 +44,15 @@ public class Monster : MonoBehaviour
             transform.Translate(Vector2.down * chaseSpeed * Time.deltaTime);
             LookAtPlayer();
 
-            float distnace = Vector2.Distance(this.transform.position, playerPos);
+            distance = Vector2.Distance(this.transform.position, player.transform.position);
 
-            if(distnace >= maxChaseDistance)
+            if(distance >= maxChaseDistance)
+            {
+                Stop();
+                particle.SetActive(false);
+            }
+
+            if(player == null)
             {
                 Stop();
                 particle.SetActive(false);

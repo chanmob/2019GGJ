@@ -4,47 +4,64 @@ using UnityEngine;
 
 public class Stone : MonoBehaviour
 {
-    private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
+
     private CircleCollider2D circle2d;
 
+    public GameObject waveParticle;
+
+    public float maxRadius;
+
     public float speed;
-    public float maxradius;
+    public float increaseRadiusTime;
+
+    private IEnumerator WaveCoroutine;
 
 	// Use this for initialization
 	void Start ()
     {
-        rb2d = GetComponent<Rigidbody2D>();
         circle2d = GetComponent<CircleCollider2D>();
         rb2d.AddForce(transform.up * -speed);
 
-        StartCoroutine(Wave());
+        waveParticle = transform.Find("Wave").gameObject;
+
+        WaveCoroutine = CreateWave(1f);
+        StartCoroutine(WaveCoroutine);
     }
 
-    private IEnumerator Wave()
+    private IEnumerator CreateWave(float _delay)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_delay);
         Debug.Log("파동 시작");
         rb2d.velocity = new Vector2(0, 0);
-        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<TrailRenderer>().enabled = false;
 
-        float t = 0.5f;
+        waveParticle.SetActive(true);
 
-        while (t < maxradius)
+        float t = 0;
+
+        while (t < maxRadius)
         {
-            t += (Time.deltaTime / 1);
-
+            t += (Time.deltaTime / increaseRadiusTime) * maxRadius;
             circle2d.radius = t;
 
             yield return null;
         }
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        if (collision.CompareTag("Monster"))
+        if (collision.CompareTag("Map"))
+        {
+            Debug.Log("벽과 부딪힘");
+            StopCoroutine(WaveCoroutine);
+            WaveCoroutine = CreateWave(0f);
+            StartCoroutine(WaveCoroutine);
+        }
+        else if (collision.CompareTag("Monster"))
         {
             collision.GetComponent<Monster>().Attack(this.gameObject, true);
         }
