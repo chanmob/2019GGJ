@@ -15,6 +15,7 @@ public class UIButtonManager : MonoBehaviour {
 
 	public void PressMainBtn()
 	{
+		Time.timeScale = 1;
 		SceneManager.LoadScene("Main");
 	}
 
