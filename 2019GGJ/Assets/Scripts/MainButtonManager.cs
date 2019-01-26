@@ -66,6 +66,7 @@ public class MainButtonManager : MonoBehaviour {
 
 	IEnumerator FadeImage(bool fadeAway)
 	{
+		Debug.Log("작동1");
 		if (fadeAway)
 		{
 			for (float i = 1; i >= 0; i -= Time.deltaTime)
@@ -81,6 +82,7 @@ public class MainButtonManager : MonoBehaviour {
 				img.color = new Color(0, 0, 0, i);
 				yield return null;
 			}
+			Debug.Log("작동2");
 			SceneManager.LoadScene("Tutorial");
 		}
 	}
