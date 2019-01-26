@@ -7,13 +7,16 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private Vector3? pos;
-    private Vector3 mousePos;
+    private Vector3 downMousePos;
+    private Vector3 upMousePos;
     private Vector3 diff;
 
     public float speed;
     private float rot_z;
+    private float clickTime;
 
     private bool torchlightOn = false;
+    private bool interactTorch;
     private bool leftstep = false;
 
     public int hp;
@@ -38,25 +41,58 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("이동 시작");
-            rb2d.velocity = new Vector2(0, 0);
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            LookAt();
-            if(stepCoroutine == null)
-            {
-                stepCoroutine = FootStep();
-                StartCoroutine(stepCoroutine);
-            }
-            pos = mousePos;
+            Debug.Log("첫번째 터치");
+            clickTime = 0f;
+            downMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            interactTorch = false;
         }
 
-        if(pos != null)
+        else if (Input.GetMouseButton(0) && !interactTorch)
         {
-            Vector2 direction = (mousePos - this.transform.position).normalized;
+            clickTime += Time.deltaTime;
+
+            if (clickTime >= 1f)
+            {
+                Debug.Log("Long Click : Torch");
+                interactTorch = true;
+                clickTime = 0f;
+                torchlightOn = !torchlightOn;
+                torch.SetActive(torchlightOn);
+            }
+        }
+
+        else if (Input.GetMouseButtonUp(0))
+        {
+            upMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (Mathf.Abs(Vector2.Distance(downMousePos, upMousePos)) >= 2f)
+            {
+                Debug.Log("Swipe : Throw Stone");
+                StepStop();
+                LookAt(upMousePos);
+                ThrowStone();
+            }
+            else
+            {
+                Debug.Log("Short Click : Move");
+                rb2d.velocity = new Vector2(0, 0);
+                LookAt(downMousePos);
+                if (stepCoroutine == null)
+                {
+                    stepCoroutine = FootStep();
+                    StartCoroutine(stepCoroutine);
+                }
+                pos = downMousePos;
+            }
+        }
+
+        if (pos != null)
+        {
+            Vector2 direction = (downMousePos - this.transform.position).normalized;
             transform.Translate(Vector2.up * -speed * Time.deltaTime);
             //rb2d.AddForce(direction * speed * Time.deltaTime);
 
-            if (Vector2.Distance(this.transform.position, mousePos) < 0.1f)
+            if (Vector2.Distance(this.transform.position, downMousePos) < 0.1f)
             {
                 StepStop();
             }
@@ -124,9 +160,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void LookAt()
+    private void LookAt(Vector3 _pos)
     {
-        diff = mousePos - transform.position;
+        diff = _pos - transform.position;
         diff.Normalize();
 
         rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
