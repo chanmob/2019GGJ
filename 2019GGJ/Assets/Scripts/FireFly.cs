@@ -18,6 +18,7 @@ public class FireFly : MonoBehaviour
         if (collision.CompareTag("Player") && !oneTime)
         {
             oneTime = true;
+            GameManager.instance.IncreaseFireFly();
             ps[0].gameObject.SetActive(false);
             ps[1].gameObject.SetActive(true);
             StartCoroutine(Disappear());

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private AudioSource audiosource;
 
     private Vector3? pos;
+    private Vector3 startPos;
     private Vector3 downMousePos;
     private Vector3 upMousePos;
     private Vector3 diff;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private bool torchlightOn = false;
     private bool interactTorch;
     private bool leftstep = false;
+    private bool death = false;
 
     public int hp;
 
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         audiosource = GetComponent<AudioSource>();
+        startPos = transform.position;
         torch = transform.Find("Torch").gameObject;
 	}
 	
@@ -191,11 +194,22 @@ public class Player : MonoBehaviour
     {
         StepStop();
 
-        if (collision.gameObject.CompareTag("Monster"))
+        if (collision.gameObject.CompareTag("Monster") && !death)
         {
             Debug.Log("몬스터와 충돌");
+            death = true;
+            GameManager.instance.IncreaseDeath();
+            StartCoroutine(ReStart());
             Vector2 direction = (collision.transform.position - this.transform.position).normalized;
             rb2d.AddForce(direction * -100);
         }
+    }
+
+    private IEnumerator ReStart()
+    {
+        yield return new WaitForSeconds(1f);
+
+        this.transform.position = startPos;
+        death = false;
     }
 }
