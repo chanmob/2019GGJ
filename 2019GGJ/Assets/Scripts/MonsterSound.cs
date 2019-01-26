@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class MonsterSound : MonoBehaviour
 {
+    private Monster monster;
+
     private AudioSource audiosource;
 
     public AudioClip attackSound;
@@ -16,6 +18,7 @@ public class MonsterSound : MonoBehaviour
     private CircleCollider2D circleCollider2D;
 
     private bool soundOn = false;
+    private bool inBoundary = false;
 
     public float distance;
     public float colliderRadius;
@@ -27,6 +30,8 @@ public class MonsterSound : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        monster = GetComponentInParent<Monster>();
+
         audiosource = GetComponent<AudioSource>();
         circleCollider2D = GetComponent<CircleCollider2D>();
 
@@ -45,12 +50,21 @@ public class MonsterSound : MonoBehaviour
 
             if(distance <= boundaryRange)
             {
+                if (!inBoundary)
+                {
+                    inBoundary = true;
+                    monster.Attack(player);
+                    time = soundDelay;
+                }
+
                 PlaySound(attackSound);
+
             }
 
             else
             {
                 PlaySound(boundarySound);
+                inBoundary = false;
             }
         }	
 	}
