@@ -182,7 +182,9 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Monster"))
         {
-            Debug.Log("AA");
+            Debug.Log("몬스터와 충돌");
+            Vector2 direction = (collision.transform.position - this.transform.position).normalized;
+            rb2d.AddForce(direction * -100);
         }
     }
 }

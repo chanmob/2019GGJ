@@ -55,7 +55,15 @@ public class Monster : MonoBehaviour
 
     public void Attack(GameObject _go, bool _stone)
     {
-        chase = true;
+        switch (state)
+        {
+            case STATE.CHASE:
+                chase = true;
+                break;
+            case STATE.RUSH:
+                StartCoroutine(RushToPlayer());
+                break;
+        }
         particle.SetActive(true);
         player = _go;
         playerPos = player.transform.position;
@@ -96,7 +104,28 @@ public class Monster : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        Stop();
+        particle.SetActive(false);
+    }
+
+    private IEnumerator RushToPlayer()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Vector2 direction;
+
+        if(player == null)
+        {
+            direction = (playerPos - this.transform.position).normalized;
+        }
+        else
+        {
+            direction = (player.transform.position - this.transform.position).normalized;
+        }
+
+        rb2d.AddForce(direction * rushSpeed * Time.deltaTime);
+
+        yield return new WaitForSeconds(3f);
+
         particle.SetActive(false);
     }
 }
