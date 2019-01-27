@@ -298,13 +298,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef6fc65ea143a944930202478f899ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeDelay: 0
+  audiosource: {fileID: 0}
   endingName: {fileID: 1304323496}
   endingText: {fileID: 1977180192}
-  happyEndingText: haaaaaaaaaaaaaaaaaaaaaaaappy
-  normalEndingText: noooooooooooooooooooooooormal
-  badEndingText: baaaaaaaaaaaaaaaaaaaaaaaad
-  endingBGM: {fileID: 0}
-  happyEndingBGM: {fileID: 0}
+  happyEndingText:
+  - "We have finally arrived at the end of the moor,\r\nThe night still beckons as
+    we stand before the grandeur.\r\nOne more step out and the child would be free
+    for sure.\r\n\r\nThe child grasps my hand, firmer than ever."
+  - "\"Thank you,\" it says\r\n\"Not only you helped me out from that place,\r\nbut
+    you let me get used to the world I embrace.\r\nI am grateful how intertwined are
+    our ways.\r\n\r\nNow, You are my 'home'.\""
+  - "And thus, we step out from the hollow,\r\nInto the greater darkness we go."
+  normalEndingText:
+  - "We have finally arrived at the end of the moor,\r\nThe night still beckons as
+    we stand before the grandeur.\r\nOne more step out and the child would be free
+    for sure.\r\n\r\nHowever.....\r\nSudden uneasiness heavily weighs down upon me."
+  - "Have I missed something?\r\nAre we fleeing this moor blindly calling it defiled?\r\nThere
+    may be, in fact, something needed for a child\r\nAs to a great unknown it is jumping\r\nIn
+    a place it calls 'home'."
+  - "The hand inside mine in anxiety have twirled,\r\nThoughts turn into anguish as
+    we go to strive.\r\nWill this child stand up to the new world?\r\nWill this child
+    survive?\r\nI don't know."
+  badEndingText:
+  - "We have finally arrived at the end of the moor,\r\nThe night still beckons as
+    we stand before the grandeur.\r\nOne more step out and the child would be free
+    for sure.\r\n\r\nHowever......\r\nThe child suddenly shakes off my hand."
+  - "\"Away!\r\nYou dragged me out, saying that I was curfewed,\r\nBut what I met
+    was nothing but pain and solitude.\r\nLet me be, without any sway-\r\nBack in
+    the adobe I call 'home'!\""
+  - "Like a wounded beast, the child dashed back into the moor.\r\nWhat was this deliverance?\r\nMaybe
+    I was dragging the child on my will, as if it was a prisoner and I a savior?\r\nI
+    still stand here, blaming my indifference.\r\n\r\nPitiful, pitiful."
+  endingBGM: {fileID: 8300000, guid: a56d0b1a174c9394d9016cdf6f87d0df, type: 3}
+  happyEndingBGM: {fileID: 8300000, guid: 4076ff6f433e06e45b226fee8fda34c8, type: 3}
 --- !u!4 &732412627
 Transform:
   m_ObjectHideFlags: 0
@@ -328,7 +355,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -520,8 +547,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 250}
+  m_SizeDelta: {x: -100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977180192
 MonoBehaviour:
@@ -544,15 +571,15 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 96f79d82c6f9b0a45a17d53893ce0274, type: 3}
-    m_FontSize: 80
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 100
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: EndingText
