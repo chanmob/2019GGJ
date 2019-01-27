@@ -6,7 +6,8 @@ public class FindPlayer : MonoBehaviour {
 
 	public MonsterSound monsterScript;
 	public DialogueManager dialogueScript;
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		

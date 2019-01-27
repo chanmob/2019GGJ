@@ -293,8 +293,9 @@ MonoBehaviour:
   dialogueTrigger: {fileID: 1908523955}
   player: {fileID: 1929047084}
   img: {fileID: 130308239}
-  nextTutorial: Tutorial 2
+  nextTutorial: Stage A
   dialogueEnd: 0
+  monsterSpawn: 0
 --- !u!4 &248914038
 Transform:
   m_ObjectHideFlags: 0

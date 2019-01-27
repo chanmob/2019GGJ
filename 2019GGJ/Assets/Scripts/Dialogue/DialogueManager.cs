@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour {
 	private string beforeSentence;
 
 	public bool dialogueEnd;
+	public bool monsterSpawn;
 
 	// Use this for initialization
 	void Start () {
@@ -35,10 +36,15 @@ public class DialogueManager : MonoBehaviour {
 			StartCoroutine(FadeText(dialogueText, true));
 			StartCoroutine(FadeText(guideText, false));
 			StartCoroutine(LoadNextTutorial(tutorialEndTime, nextTutorial));
+			monsterSpawn = true;
 			dialogueEnd = false;
 		}
 
-
+		if(player.GetComponent<Player>().death)
+		{
+			StopAllCoroutines();
+			StartCoroutine(LoadNextTutorial(tutorialEndTime, nextTutorial));
+		}
 
 	}
 

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 	private bool torchlightOn = false;
 	private bool interactTorch;
 	private bool leftstep = false;
-	private bool death = false;
+	public bool death = false;
 
 	public int hp;
 
