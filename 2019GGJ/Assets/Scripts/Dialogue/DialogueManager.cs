@@ -122,11 +122,17 @@ public class DialogueManager : MonoBehaviour {
 
 	IEnumerator FadePlayer(bool fadeAway)
 	{
+		var playerSR = player.GetComponentsInChildren<SpriteRenderer>();
+
 		if (fadeAway)
 		{
 			for (float i = 1; i >= 0; i -= Time.deltaTime)
 			{
-				player.GetComponent<SpriteRenderer>().color = new Color(i, i, i, i); //까맣게 투명하게
+				for(int j =0; j < playerSR.Length; j++)
+				{
+					playerSR[j].color = new Color(i, i, i, i);
+				}
+				//player.GetComponent<SpriteRenderer>().color = new Color(i, i, i, i); //까맣게 투명하게
 				yield return null;
 			}
 		}
@@ -134,7 +140,11 @@ public class DialogueManager : MonoBehaviour {
 		{
 			for (float i = 0; i <= 1.1f; i += Time.deltaTime)
 			{
-				player.GetComponent<SpriteRenderer>().color = new Color(i, i, i, i); // 하얗게 not투명하게
+				for (int j = 0; j < playerSR.Length; j++)
+				{
+					playerSR[j].color = new Color(i, i, i, i);
+				}
+				//player.GetComponent<SpriteRenderer>().color = new Color(i, i, i, i); // 하얗게 not투명하게
 				yield return null;
 			}
 		}

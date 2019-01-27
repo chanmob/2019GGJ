@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeDelay: 0.04
-  tutorialEndTime: 10
+  tutorialEndTime: 12
   dialogueText: {fileID: 1884598978}
   guideText: {fileID: 920117521}
   dialogueTrigger: {fileID: 1908523955}
@@ -562,7 +562,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Swipe to throw rocks. Touch twice to light or extinguish a torch.
+  m_Text: 'Swipe to throw rocks. Touch twice to light or extinguish a torch.
+
+    Beware-torch can be a guide, but harms the child gradually.'
 --- !u!222 &920117522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -718,7 +720,7 @@ GameObject:
   - component: {fileID: 1232847710}
   - component: {fileID: 1232847711}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Child
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5589,7 +5591,6 @@ RectTransform:
   - {fileID: 1908523956}
   - {fileID: 130308238}
   - {fileID: 920117520}
-  - {fileID: 1537432462}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5598,81 +5599,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1537432461
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1537432462}
-  - component: {fileID: 1537432464}
-  - component: {fileID: 1537432463}
-  m_Layer: 5
-  m_Name: GuideText (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1537432462
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537432461}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1498148606}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -92}
-  m_SizeDelta: {x: 840.1, y: 30}
-  m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1537432463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537432461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 96f79d82c6f9b0a45a17d53893ce0274, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 5
-    m_MaxSize: 50
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Beware-torch can be a guide, but harms the child gradually.
---- !u!222 &1537432464
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537432461}
-  m_CullTransparentMesh: 0
 --- !u!1001 &1560684144
 Prefab:
   m_ObjectHideFlags: 0
@@ -10723,7 +10649,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Touch the screen
+  m_Text: 
 --- !u!222 &1884598979
 CanvasRenderer:
   m_ObjectHideFlags: 0
