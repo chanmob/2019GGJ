@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
 {
 	private Rigidbody2D rb2d;
 
-	private AudioSource audiosource;
+	public AudioSource stepSound;
+    public AudioSource tapSound;
+
+    public AudioClip[] randomTapClip;
 
 	private Vector3? pos;
 	private Vector3 startPos;
@@ -41,7 +44,6 @@ public class Player : MonoBehaviour
 	void Start ()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        audiosource = GetComponent<AudioSource>();
         startPos = transform.position;
         torch = transform.Find("Torch").gameObject;
 	}
@@ -89,9 +91,12 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("Short Click : Move");
                 rb2d.velocity = new Vector2(0, 0);
-                if (!audiosource.isPlaying)
+                var randomSound = Random.Range(0, 3);
+                tapSound.clip = randomTapClip[randomSound];
+                tapSound.Play();
+                if (!stepSound.isPlaying)
                 {
-                    audiosource.Play();
+                    stepSound.Play();
                 }
                 LookAt(downMousePos);
                 if (stepCoroutine == null)
@@ -168,7 +173,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("정지");
         pos = null;
-        audiosource.Stop();
+        stepSound.Stop();
         rb2d.velocity = new Vector2(0, 0);
         if(stepCoroutine != null)
         {
