@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndingManager : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class EndingManager : MonoBehaviour {
 
 	public Text endingName;
 	public Text endingText;
+	public Image img;
+	public GameObject point;
 
 	[TextArea]
 	public string[] happyEndingText;
@@ -28,6 +31,8 @@ public class EndingManager : MonoBehaviour {
 
 	private int index;
 
+
+	[SerializeField]
 	private bool isTyping;
 
 	public AudioClip endingBGM;
@@ -89,11 +94,22 @@ public class EndingManager : MonoBehaviour {
 				index++;
 				if(index >= endingStory.Length)
 				{
+					Debug.Log("end"); StartCoroutine(FadeImage(false));
 					return;
 				}
 				StartCoroutine(TypeSentence(endingStory[index]));
 			}
 		}
+
+		if(isTyping)
+		{
+			point.SetActive(false);
+		}
+		else
+		{
+			point.SetActive(true);
+		}
+
 	}
 
 	IEnumerator TypeSentence(string sentence)
@@ -106,8 +122,29 @@ public class EndingManager : MonoBehaviour {
 			endingText.text += letter;
 			yield return new WaitForSeconds(typeDelay);
 		}
-
-		yield return new WaitForSeconds(0.5f);
 		isTyping = false;
+	}
+
+	IEnumerator FadeImage(bool fadeAway)
+	{
+		img.gameObject.SetActive(true);
+		if (fadeAway)
+		{
+			for (float i = 1; i >= 0; i -= Time.deltaTime)
+			{
+				img.color = new Color(0, 0, 0, i);
+				yield return null;
+			}
+		}
+		else
+		{
+			for (float i = 0; i <= 1.1f; i += Time.deltaTime)
+			{
+				img.color = new Color(0, 0, 0, i);
+				yield return null;
+			}
+
+			SceneManager.LoadScene("Main");
+		}
 	}
 }
