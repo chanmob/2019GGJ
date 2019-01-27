@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eec57ba07137174092e183c1c06c922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDelay: 0.07
+  typeDelay: 0.04
   tutorialEndTime: 10
   dialogueText: {fileID: 1884598978}
   guideText: {fileID: 920117521}
