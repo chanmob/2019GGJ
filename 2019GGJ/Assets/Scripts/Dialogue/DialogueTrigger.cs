@@ -7,12 +7,9 @@ public class DialogueTrigger : MonoBehaviour {
 
 	public Dialogue dialogue;
 
-	void FixedUpdate()
+	private void Start()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			TriggerDialogue();
-		}
+		TriggerDialogue();
 	}
 
 	public void TriggerDialogue()

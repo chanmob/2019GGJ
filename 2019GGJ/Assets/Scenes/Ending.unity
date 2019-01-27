@@ -330,8 +330,8 @@ MonoBehaviour:
   - "Like a wounded beast, the child dashed back into the moor.\r\nWhat was this deliverance?\r\nMaybe
     I was dragging the child on my will, as if it was a prisoner and I a savior?\r\nI
     still stand here, blaming my indifference.\r\n\r\nPitiful, pitiful."
-  endingBGM: {fileID: 8300000, guid: a56d0b1a174c9394d9016cdf6f87d0df, type: 3}
-  happyEndingBGM: {fileID: 8300000, guid: 4076ff6f433e06e45b226fee8fda34c8, type: 3}
+  endingBGM: {fileID: 8300000, guid: 79d7874c045cd074a98f3d1fd940706e, type: 3}
+  happyEndingBGM: {fileID: 8300000, guid: 1062863ff1b8eb145aec70959a385852, type: 3}
 --- !u!4 &732412627
 Transform:
   m_ObjectHideFlags: 0
