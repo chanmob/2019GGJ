@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eec57ba07137174092e183c1c06c922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDelay: 0.07
+  typeDelay: 0.04
   tutorialEndTime: 7
   dialogueText: {fileID: 1884598978}
   guideText: {fileID: 920117521}
@@ -439,9 +439,10 @@ MonoBehaviour:
   state: 0
   chase: 0
   dialogueManagerScript: {fileID: 248914037}
+  player: {fileID: 0}
   chaseSpeed: 1
   rushSpeed: 300
-  maxChaseDistance: 1.5
+  maxChaseDistance: 3.5
 --- !u!58 &1053675704
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5330,16 +5331,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84133f94f5a1d594f8504782aeff07c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 2
+  state: 0
   monster_tutorial: {fileID: 0}
   audiosource: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 5eca003522b3d67459ba449521c6f20a, type: 3}
   boundarySound: {fileID: 8300000, guid: a1c8e37bb8e565e4c83cc3da7195f621, type: 3}
-  player: {fileID: 0}
-  colliderRadius: 4
+  player: {fileID: 1929047084}
+  colliderRadius: 3.5
   soundDelay: 2
   divisionValue: 3
-  boundaryRange: 1.5
+  boundaryRange: 3.5
 --- !u!82 &1691249298
 AudioSource:
   m_ObjectHideFlags: 0

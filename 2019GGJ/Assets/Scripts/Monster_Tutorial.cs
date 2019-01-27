@@ -13,13 +13,13 @@ public class Monster_Tutorial : MonoBehaviour
 
     public STATE state = STATE.NONE;
 
-    public bool chase;
+    public bool chase = true;
 
 	public DialogueManager dialogueManagerScript;
 
     private Rigidbody2D rb2d;
 
-    private GameObject player;
+    public GameObject player;
     private GameObject particle;
 
     public float chaseSpeed;
@@ -102,7 +102,7 @@ public class Monster_Tutorial : MonoBehaviour
 
     private void LookAtPlayer()
     { 
-        diff = playerPos - transform.position;
+        diff = player.transform.position - transform.position;
         diff.Normalize();
 
         rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;

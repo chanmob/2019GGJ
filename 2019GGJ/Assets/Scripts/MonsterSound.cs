@@ -66,6 +66,10 @@ public class MonsterSound : MonoBehaviour
     {
         if (soundOn)
         {
+            if(player == null)
+            {
+                return;
+            }
             distance = Vector2.Distance(player.transform.position, this.transform.position);
             time += Time.deltaTime;
 
