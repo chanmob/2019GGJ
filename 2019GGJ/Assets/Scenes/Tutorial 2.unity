@@ -562,7 +562,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Swipe to throw rocks. Touch twice to light or extinguish a torch.
+  m_Text: 'Swipe to throw rocks. Press and hold to light or extinguish a torch.
 
     Beware-torch can be a guide, but harms the child gradually.'
 --- !u!222 &920117522
