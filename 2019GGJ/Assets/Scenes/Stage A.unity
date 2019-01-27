@@ -9285,21 +9285,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
         type: 2}
-      propertyPath: dialogueContents.Array.data[0]
-      value: A bit eerie, but it feels good.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
-        type: 2}
-      propertyPath: dialogueContents.Array.data[1]
-      value: So many me in other clothes!
-      objectReference: {fileID: 0}
-    - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
-        type: 2}
-      propertyPath: dialogueContents.Array.data[2]
-      value: Freedom? What's that? I don't know.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114032702572567340, guid: a8c08584fcdc07444abbc90fe679bcda,
-        type: 2}
       propertyPath: childDialogue
       value: 
       objectReference: {fileID: 1243461394}
