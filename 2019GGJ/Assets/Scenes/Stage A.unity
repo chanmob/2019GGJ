@@ -7351,7 +7351,7 @@ MonoBehaviour:
   listenForWindowChanges: 1
   createCameraForLetterBoxRendering: 1
   findCamerasAutomatically: 1
-  letterBoxCameraColor: {r: 0, g: 0, b: 0, a: 1}
+  letterBoxCameraColor: {r: 1, g: 1, b: 1, a: 1}
   cameras: []
   letterBoxCamera: {fileID: 0}
 --- !u!4 &1077288222
