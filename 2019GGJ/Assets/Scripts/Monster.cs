@@ -17,8 +17,10 @@ public class Monster : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+	[SerializeField]
     private GameObject player;
-    private GameObject particle;
+	[SerializeField]
+	private GameObject particle;
 
     public float chaseSpeed;
     public float rushSpeed;
@@ -35,7 +37,8 @@ public class Monster : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         particle = transform.Find("Particle").gameObject;
-    }
+		player = GameObject.FindGameObjectWithTag("Player");
+	}
 
     private void Update()
     {

@@ -6,15 +6,27 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class MonsterSound : MonoBehaviour
 {
-	private Monster_Tutorial monster;
+	public enum STATE
+	{
+		TUTORIAL,
+		STAGE,
+		NONE
+	}
 
+	public STATE state = STATE.NONE;
+
+	[SerializeField]
+	private Monster_Tutorial monster_tutorial;
+	private Monster monster;
+
+	[SerializeField]
 	private AudioSource audiosource;
 
     public AudioClip attackSound;
     public AudioClip boundarySound;
 
     public GameObject player;
-
+	
 	private CircleCollider2D circleCollider2D;
 
 	private bool soundOn = false;
@@ -30,7 +42,16 @@ public class MonsterSound : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        monster = GetComponentInParent<Monster_Tutorial>();
+		switch(state)
+		{
+			case STATE.STAGE:
+				monster = GetComponentInParent<Monster>();
+				break;
+			case STATE.TUTORIAL:
+				monster_tutorial = GetComponentInParent<Monster_Tutorial>();
+				break;
+		}
+
 
         audiosource = GetComponent<AudioSource>();
         circleCollider2D = GetComponent<CircleCollider2D>();
@@ -53,7 +74,15 @@ public class MonsterSound : MonoBehaviour
                 if (!inBoundary)
                 {
                     inBoundary = true;
-                    monster.Attack(player, false);
+					switch (state)
+					{
+						case STATE.STAGE:
+							monster.Attack(player, false);
+							break;
+						case STATE.TUTORIAL:
+							monster_tutorial.Attack(player, false);
+							break;
+					}
                     time = soundDelay;
                 }
 
