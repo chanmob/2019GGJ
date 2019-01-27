@@ -19,8 +19,7 @@ public class Monster : MonoBehaviour
 
 	[SerializeField]
     private GameObject player;
-	[SerializeField]
-	private GameObject particle;
+	public GameObject particle;
 
     public float chaseSpeed;
     public float rushSpeed;
