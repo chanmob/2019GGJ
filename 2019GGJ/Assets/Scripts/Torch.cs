@@ -9,6 +9,11 @@ public class Torch : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player"))
+        {
+            return;
+        }
+
         var monster = collision.GetComponent<Monster>();
         if(monster != null)
         {
@@ -29,6 +34,11 @@ public class Torch : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player"))
+        {
+            return;
+        }
+
         var monster = collision.GetComponent<Monster>();
         if (monster != null)
         {

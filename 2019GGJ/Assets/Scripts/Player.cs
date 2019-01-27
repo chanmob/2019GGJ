@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     public AudioClip[] randomTapClip;
 
+    private SpriteRenderer child;
+
 	private Vector3? pos;
 	private Vector3 startPos;
 	private Vector3 downMousePos;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
 	public float speed;
 	private float rot_z;
 	private float clickTime;
+    private float torchTimer;
 
 	private bool torchlightOn = false;
 	private bool interactTorch;
@@ -46,6 +49,7 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         torch = transform.Find("Torch").gameObject;
+        child = transform.Find("Child").GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -120,15 +124,35 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (torchlightOn)
         {
-            ThrowStone();
+            torchTimer += Time.deltaTime;
+
+            if (child)
+            {
+                child.color = new Color((torchTimer / 5), 0, 0);
+            }
+
+            if(torchTimer >= 5f && !death)
+            {
+                death = true;
+                StartCoroutine(ReStart());
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        else
         {
-            torchlightOn = !torchlightOn;
-            torch.SetActive(torchlightOn);
+            if (child)
+            {
+                child.color = new Color((torchTimer / 5), 0, 0);
+            }
+
+            torchTimer -= Time.deltaTime;
+            if(torchTimer <= 0)
+            {
+                child.color = new Color(1, 1, 1);
+                torchTimer = Mathf.Max(torchTimer, 0);
+            }
         }
     }
 
@@ -218,6 +242,8 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+        torchTimer = 0;
+        child.color = new Color(1, 1, 1);
         this.transform.position = startPos;
         death = false;
     }

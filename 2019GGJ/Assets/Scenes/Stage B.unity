@@ -8154,6 +8154,15 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1843816989145384, guid: a8c08584fcdc07444abbc90fe679bcda, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 212186049272984262, guid: a8c08584fcdc07444abbc90fe679bcda,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8c08584fcdc07444abbc90fe679bcda, type: 2}
   m_IsPrefabAsset: 0
