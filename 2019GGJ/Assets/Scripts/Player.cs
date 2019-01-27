@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 	private float rot_z;
 	private float clickTime;
     private float torchTimer;
+    private float childColorValue;
 
 	private bool torchlightOn = false;
 	private bool interactTorch;
@@ -130,7 +131,8 @@ public class Player : MonoBehaviour
 
             if (child)
             {
-                child.color = new Color((torchTimer / 5), 0, 0);
+                childColorValue = 1 - (torchTimer / 5);
+                child.color = new Color(1, childColorValue, childColorValue);
             }
 
             if(torchTimer >= 5f && !death)
@@ -144,7 +146,8 @@ public class Player : MonoBehaviour
         {
             if (child)
             {
-                child.color = new Color((torchTimer / 5), 0, 0);
+                childColorValue = 1 - (torchTimer / 5);
+                child.color = new Color(1, childColorValue, childColorValue);
             }
 
             torchTimer -= Time.deltaTime;
@@ -242,6 +245,11 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+        if (torchlightOn)
+        {
+            torchlightOn = false;
+            torch.SetActive(false);
+        }
         torchTimer = 0;
         child.color = new Color(1, 1, 1);
         this.transform.position = startPos;
